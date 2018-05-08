@@ -18,3 +18,7 @@ func UnderScore(s string) string {
 	}
 	return strings.ToLower(strings.Join(a, "_"))
 }
+
+func IsEmpty(s string) bool {
+	return len(strings.TrimSpace(s)) == 0
+}

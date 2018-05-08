@@ -16,7 +16,7 @@ const (
 	E8601DTwdZone = "2006-01-02T15:04:05.000Z"
 )
 
-//MatchWithE8601DAw ... Match with "2006-01-02"
+//MatchWithE8601DAw ... Match with "01-02-2006"
 func MatchWithDDMMYYw(date string) bool {
 	match, mErr := regexp.MatchString("^\\d{2}/\\d{2}/\\d{4}$", date)
 	if mErr != nil {
