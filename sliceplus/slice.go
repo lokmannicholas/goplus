@@ -6,7 +6,7 @@ import (
 )
 
 func Remove(v interface{}, pos int) interface{} {
-	slice, success := IsSlice(v, reflect.Slice)
+	slice, success := IsSlice(v)
 	if !success {
 		return nil
 	}
@@ -23,14 +23,14 @@ func Remove(v interface{}, pos int) interface{} {
 }
 
 func Delete(v interface{}, v2 interface{}) interface{} {
-	slice, success := IsSlice(v, reflect.Slice)
+	slice, success := IsSlice(v)
 	if !success {
 		return nil
 	}
 	if !Contains(v, v2) {
 		return nil
 	}
-	item, success := IsSlice(v2, reflect.Slice)
+	item, success := IsSlice(v2)
 	if success {
 		var temp = v
 		for j := 0; j < item.Len(); j++ {
@@ -52,14 +52,14 @@ func Delete(v interface{}, v2 interface{}) interface{} {
 }
 
 func Find(v interface{}, v2 interface{}) int {
-	slice, success := IsSlice(v, reflect.Slice)
+	slice, success := IsSlice(v)
 	if !success {
 		if v == v2 {
 			return 0
 		}
 	}
 
-	item, success := IsSlice(v2, reflect.Slice)
+	item, success := IsSlice(v2)
 	if success {
 		for j := 0; j < item.Len(); j++ {
 			if Find(v, item.Index(j).Interface()) > -1 {
@@ -76,14 +76,14 @@ func Find(v interface{}, v2 interface{}) int {
 	return -1
 }
 func Contains(v interface{}, v2 interface{}) bool {
-	slice, success := IsSlice(v, reflect.Slice)
+	slice, success := IsSlice(v)
 	if !success {
 		if v == v2 {
 			return true
 		}
 	}
 
-	item, success := IsSlice(v2, reflect.Slice)
+	item, success := IsSlice(v2)
 	if success {
 		for j := 0; j < item.Len(); j++ {
 			if !Contains(v, item.Index(j).Interface()) {
@@ -105,7 +105,11 @@ func matchValue(v interface{}, v2 interface{}) bool {
 	return fmt.Sprintf("%v", v) == fmt.Sprintf("%v", v2)
 }
 
-func IsSlice(arg interface{}, kind reflect.Kind) (val reflect.Value, ok bool) {
+func IsSlice(arg interface{}) (val reflect.Value, ok bool) {
+	return isTypeOf(arg, reflect.Slice)
+}
+
+func isTypeOf(arg interface{}, kind reflect.Kind) (val reflect.Value, ok bool) {
 	val = reflect.ValueOf(arg)
 	if val.Kind() == kind {
 		ok = true

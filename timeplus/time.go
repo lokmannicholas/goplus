@@ -20,7 +20,6 @@ const (
 func MatchWithDDMMYYw(date string) bool {
 	match, mErr := regexp.MatchString("^\\d{2}/\\d{2}/\\d{4}$", date)
 	if mErr != nil {
-		panic(mErr.Error())
 		return false
 	}
 	return match
@@ -30,7 +29,6 @@ func MatchWithDDMMYYw(date string) bool {
 func MatchWithE8601DAw(date string) bool {
 	match, mErr := regexp.MatchString("^\\d{4}-\\d{2}-\\d{2}$", date)
 	if mErr != nil {
-		panic(mErr.Error())
 		return false
 	}
 	return match
@@ -40,7 +38,6 @@ func MatchWithE8601DAw(date string) bool {
 func MatchWithE8601DZwd(date string) bool {
 	match, mErr := regexp.MatchString("^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\+\\d{2}:\\d{2}$", date)
 	if mErr != nil {
-		panic(mErr.Error())
 		return false
 	}
 	return match
@@ -50,7 +47,6 @@ func MatchWithE8601DZwd(date string) bool {
 func MatchWithE8601DTwd(date string) bool {
 	match, mErr := regexp.MatchString("^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}$", date)
 	if mErr != nil {
-		panic(mErr.Error())
 		return false
 	}
 	return match
@@ -60,7 +56,6 @@ func MatchWithE8601DTwd(date string) bool {
 func MatchWithB8601DAw(date string) bool {
 	match, mErr := regexp.MatchString("^([0-9]){8}$", date)
 	if mErr != nil {
-		panic(mErr.Error())
 		return false
 	}
 	return match
@@ -70,7 +65,6 @@ func MatchWithB8601DAw(date string) bool {
 func MatchWithE8601DTwdZone(date string) bool {
 	match, mErr := regexp.MatchString("^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}.000Z$", date)
 	if mErr != nil {
-		panic(mErr.Error())
 		return false
 	}
 	return match
