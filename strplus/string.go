@@ -1,12 +1,21 @@
 package strplus
 
 import (
+	"log"
 	"math/rand"
 	"regexp"
 	"strings"
 	"time"
 )
 
+func RemoveAllSymbol(s string) string {
+	reg, err := regexp.Compile("[^a-zA-Z0-9]+")
+	if err != nil {
+		log.Fatal(err)
+	}
+	return reg.ReplaceAllString(s, "")
+
+}
 func UnderScore(s string) string {
 	var camel = regexp.MustCompile("(^[^A-Z0-9]*|[A-Z0-9]*)([A-Z0-9][^A-Z]+|$)")
 	var a []string
