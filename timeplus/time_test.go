@@ -3,6 +3,8 @@ package timeplus
 import (
 	"testing"
 	"time"
+
+	"github.com/lokmannicholas/goplus/timeplus/location"
 )
 
 func TestFormate(t *testing.T) {
@@ -13,6 +15,16 @@ func TestFormate(t *testing.T) {
 	t.Logf("Test for success: %t", MatchWithB8601DAw("20060102"))
 	t.Logf("Test for success: %t", MatchWithE8601DTwdZone("2006-01-02T15:04:05.000Z"))
 	parseTime, err := Parse("2006-01-02T15:04:05.000Z")
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Logf("Test for success: %t", parseTime.String())
+	s := time.Now().Format(B8601DAw)
+	t.Log(s)
+}
+
+func TestParseWithLocation(t *testing.T) {
+	parseTime, err := ParseWithLocation("2006-01-02T15:04:05.000Z", location.HongKong())
 	if err != nil {
 		t.Fatal(err)
 	}
